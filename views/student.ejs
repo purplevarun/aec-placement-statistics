@@ -4,8 +4,8 @@
     font-family: "Noto Sans Mono", monospace;
   }
   .student {
-    background: red;
-    border: 5px solid black;
+    /* background: red; */
+    border: 5px solid grey;
     border-radius: 8px;
     margin: 10px 0px;
     display: flex;
@@ -34,7 +34,7 @@
   }
 </style>
 <div class="student">
-  <a href="#">
+  <a href="/student/<%=name%>">
     <div class="tag">
       <div class="left"><%= name %></div>
       <div class="right"><%= company %></div>
