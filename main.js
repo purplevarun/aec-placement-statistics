@@ -4,9 +4,9 @@ const port = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.get("/home", (req, res) => {
-  res.render("");
+  res.render("home");
 });
 app.get("/", (req, res) => {
-  app.redirect("/home");
+  res.redirect("/home");
 });
 app.listen(port, () => console.log("app hosted at", port));

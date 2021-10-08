@@ -1,0 +1,28 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&display=swap");
+  * {
+    font-family: "Noto Sans Mono", monospace;
+  }
+  .student {
+    /* background: red; */
+    border: 5px solid black;
+    border-radius: 8px;
+  }
+  .student:hover {
+    border-color: gold;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover {
+    color: inherit;
+  }
+</style>
+<div class="student">
+  <a href="#">
+    <div class="tag">
+      <h2><%= name %> - <%= company %></h2>
+    </div>
+  </a>
+</div>
