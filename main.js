@@ -38,8 +38,10 @@ app.get("/add", (req, res) => {
   res.render("addStudent");
 });
 app.get("/home", (req, res) => {
-  Student.find({}, (err, student) => {
-    res.render("home", { student: student });
+  Student.find({}, (err, result) => {
+    Student.count({}, (errr, count) => {
+      res.render("home", { student: result, size: count });
+    });
   });
 });
 app.get("/", (req, res) => {

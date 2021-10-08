@@ -35,6 +35,10 @@
         color: white;
         margin-bottom: 20px;
       }
+      progress {
+        width: 300px;
+        height: 30px;
+      }
     </style>
     <title>AEC Statistics ❤</title>
     <script>
@@ -49,8 +53,10 @@
         Welcome fellow Aecian <span style="color: yellow">(2018 - 2022)</span>
       </h5>
       <small style="color: grey">This app is under construction.</small> <br />
+      <p><label for="prog">Total Students placed = <%= size %>/105</label></p>
+      <p><progress id="prog" value="<%=size%>" max="105"></progress></p>
+
       <small>Click on a student to view details 😉</small>
-      <!-- <h5>You can select any student to view his/her detailed statistics</h5> -->
       <br />
       <br />
       <button class="btn btn-success btn-sm" onclick="location.assign('/add');">
