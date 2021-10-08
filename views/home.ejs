@@ -20,24 +20,50 @@
       body {
         background: black;
         color: white;
+        text-align: center;
       }
       #container {
         margin: 40px;
-        padding: 20px;
+        /* padding: 20px; */
         /* background: darkgrey; */
         min-height: 100vh;
         text-align: center;
       }
+      #varun {
+        border: none;
+        background: inherit;
+        color: white;
+        margin-bottom: 20px;
+      }
     </style>
     <title>AEC Statistics ❤</title>
+    <script>
+      const change = () => {
+        document.getElementById("varun").innerHTML = "Varun Kedia";
+      };
+    </script>
   </head>
   <body>
     <div id="container">
-      <h1>Welcome fellow AECian</h1>
-      <h1>You can select any student to view his/her detailed statistics</h1>
+      <h5>
+        Welcome fellow Aecian <span style="color: yellow">(2018 - 2022)</span>
+      </h5>
+      <small style="color: grey">This app is under construction.</small>
+      <small>Try clicking on a student 😉</small>
+      <!-- <h5>You can select any student to view his/her detailed statistics</h5> -->
       <hr />
+      <!-- Students -->
       <%- include('student', {name:"Varun Kedia", company:"Thoughtworks"}) %>
+      <%- include('student', {name:"Varun Kedia", company:"Thoughtworks"}) %>
+      <%- include('student', {name:"Varun Kedia", company:"Thoughtworks"}) %>
+
+      <!--  -->
     </div>
+    <small
+      >Created by -
+      <button id="varun" onclick="change()">Another Aecian</button>
+    </small>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
