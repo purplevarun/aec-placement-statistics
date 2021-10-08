@@ -33,7 +33,9 @@ app.get("/add", (req, res) => {
   res.render("addStudent");
 });
 app.get("/home", (req, res) => {
-  res.render("home");
+  Student.find({}, (err, student) => {
+    res.render("home", { student: student });
+  });
 });
 app.get("/", (req, res) => {
   res.redirect("/home");

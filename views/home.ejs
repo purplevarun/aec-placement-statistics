@@ -58,7 +58,8 @@
       </button>
       <hr />
       <!-- Students -->
-
+      <% student.forEach(stu=>{%> <%- include('student',
+      {name:stu.name,company:stu.company}) %> <%}) %>
       <!--  -->
     </div>
     <small
