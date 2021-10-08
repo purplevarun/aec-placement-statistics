@@ -18,6 +18,7 @@ app.post("/add", (req, res) => {
   const company = req.body.company;
   const ctc = req.body.ctc;
   console.log(name, company, ctc);
+  res.render("thanks", { name: name });
 });
 app.get("/add", (req, res) => {
   res.render("addStudent");
