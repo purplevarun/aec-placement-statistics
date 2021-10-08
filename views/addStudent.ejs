@@ -18,54 +18,53 @@
         font-family: "Noto Sans Mono", monospace;
       }
       body {
+        color: white;
         background: black;
-        color: white;
-        text-align: center;
       }
-      #container {
-        margin: 20px;
-        /* padding: 20px; */
-        /* background: darkgrey; */
-        min-height: 100vh;
+      .container {
         text-align: center;
+        padding: 20px;
+        margin-top: 50px;
       }
-      #varun {
-        border: none;
-        background: inherit;
-        color: white;
-        margin-bottom: 20px;
+      input {
+        width: 100%;
       }
     </style>
-    <title>AEC Statistics ❤</title>
-    <script>
-      const change = () => {
-        document.getElementById("varun").innerHTML = "Varun Kedia";
-      };
-    </script>
+    <title>Add a student</title>
+    <div class="container">
+      <form action="/add" method="post">
+        <h2>Enter Name</h2>
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder="Example : Sourav Maitra"
+        />
+        <br />
+        <br />
+        <h2>Enter Company</h2>
+        <input
+          type="text"
+          name="company"
+          required
+          placeholder="Example : Amazon"
+        />
+        <br />
+        <br />
+        <small>Please add only the student's final company choice</small>
+
+        <br />
+        <br />
+        <h2>Enter CTC (in LPA)</h2>
+        <input type="text" name="ctc" required placeholder="Example : 5.5" />
+        <br />
+        <br />
+
+        <button class="btn btn-primary">Add Student</button>
+      </form>
+    </div>
   </head>
   <body>
-    <div id="container">
-      <h5>
-        Welcome fellow Aecian <span style="color: yellow">(2018 - 2022)</span>
-      </h5>
-      <small style="color: grey">This app is under construction.</small> <br />
-      <small>Click on a student to view details 😉</small>
-      <!-- <h5>You can select any student to view his/her detailed statistics</h5> -->
-      <br />
-      <br />
-      <button class="btn btn-success btn-sm" onclick="location.assign('/add');">
-        Add Student
-      </button>
-      <hr />
-      <!-- Students -->
-
-      <!--  -->
-    </div>
-    <small
-      >Created by -
-      <button id="varun" onclick="change()">Another Aecian</button>
-    </small>
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
