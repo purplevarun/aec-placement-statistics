@@ -23,15 +23,49 @@
         color: white;
         background: black;
         margin-top: 60px;
+        text-align: center;
       }
       .profile {
-        margin-top: 100px;
+        margin-top: 200px;
+        text-align: center;
+      }
+      .profile-item {
+        margin: 20px 0px;
+      }
+      .profile-item > img {
+        border-radius: 50px;
+      }
+      button {
+        margin: 10px;
       }
     </style>
   </head>
   <body>
     <%- include('./header.ejs') %>
-    <div class="profile"></div>
+    <div class="profile">
+      <div class="profile-item">
+        <img src="<%= user.picture %> " alt="" />
+      </div>
+      <div class="profile-item">
+        <h2><%= user.name %></h2>
+      </div>
+      <div class="profile-item">
+        <h3><%= user.email %></h3>
+      </div>
+    </div>
+    <div class="butts">
+      <button class="btn btn-success" onclick="location.assign('/')">
+        Placement List
+      </button>
+      <br />
+      <button class="btn btn-primary" onclick="location.assign('/chat')">
+        Chat with Others
+      </button>
+      <br />
+      <button class="btn btn-danger" onclick="location.assign('/logout')">
+        Logout
+      </button>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

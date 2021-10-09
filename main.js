@@ -43,6 +43,10 @@ app.post("/login", (req, res) => {
     })
     .catch(console.error);
 });
+
+app.get("/login-error", (req, res) => {
+  res.render("error2");
+});
 app.get("/student/:student_id", (req, res) => {
   Student.findById(req.params.student_id, (err, result) => {
     res.render("details", { student: result });
@@ -111,6 +115,6 @@ function checkAuthenticated(req, res, next) {
       next();
     })
     .catch((err) => {
-      res.redirect("/error2");
+      res.redirect("/login-error");
     });
 }
