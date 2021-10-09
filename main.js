@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const Student = require("./models/student");
 require("dotenv").config();
@@ -13,6 +14,13 @@ mongoose.connect(process.env.DB_URL, (err) => {
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+// routes
+app.post("/google/login", (req, res) => {
+  var token = req.body.token;
+  console.log("token=", token);
+});
+
 app.get("/student/:student_id", (req, res) => {
   Student.findById(req.params.student_id, (err, result) => {
     res.render("details", { student: result });
