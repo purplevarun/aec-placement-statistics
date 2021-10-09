@@ -93,9 +93,13 @@ app.get("/add", (req, res) => {
 app.get("/home", (req, res) => {
   Student.find({}, (err, result) => {
     Student.count({}, (errr, count) => {
-      res.render("home", { student: result, size: count });
+      console.log("Current user = ", req.user);
+      res.render("home", { student: result, size: count, user: req.user });
     });
   });
+});
+app.get("/find", (req, res) => {
+  res.json({ status: "not yet ready" });
 });
 app.get("/", (req, res) => {
   res.redirect("/home");

@@ -8,6 +8,7 @@
     display: flex;
     /* flex-flow: column; */
     justify-content: space-between;
+    margin: 0px;
   }
   .header-element {
     float: left;
@@ -31,13 +32,19 @@
     /* background: red; */
     text-align: right;
     flex-direction: column;
-    margin-top: 0px;
+    margin: 0px;
     height: 125px;
     display: none;
+    position: fixed;
+    width: 100%;
+    top: 60px;
   }
   .dropdown-item {
     /* border-bottom: 2px solid grey; */
     color: white;
+  }
+  .mousehover:hover {
+    cursor: pointer;
   }
 </style>
 <script>
@@ -54,7 +61,15 @@
   <button class="butt header-element" onclick="location.assign('/add')">
     Add Student
   </button>
-
+  <div class="header-element mousehover">
+    <img
+      src="search.png"
+      alt=""
+      width="40px"
+      style="margin-top: 10px"
+      onclick="location.assign('/find')"
+    />
+  </div>
   <img
     src="menu-icon.png"
     alt=""
