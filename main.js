@@ -18,6 +18,11 @@ app.get("/student/:student_id", (req, res) => {
     res.render("details", { student: result });
   });
 });
+
+app.get("/login", (req, res) => {
+  res.render("login", { clientid: process.env.clientid });
+  console.log(process.env.clientid);
+});
 app.post("/add", (req, res) => {
   const name = req.body.name;
   const company = req.body.company;
