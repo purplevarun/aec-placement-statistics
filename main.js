@@ -37,7 +37,9 @@ app.get("/profile", checkAuthenticated, (req, res) => {
           visits: result.visits + 1,
           when: [
             ...result.when,
-            new Date(new Date().getTime() + 330 * 60000).toLocaleString(),
+            new Date(new Date().getTime() + 330 * 60000).toLocaleString() +
+              " @ " +
+              req.headers.host,
           ],
         },
         (err, doc) => {
