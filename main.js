@@ -83,7 +83,6 @@ app.get("/chat", (req, res) => {
 });
 app.get("/login", (req, res) => {
   res.render("login", { clientid: process.env.YOUR_CLIENT_ID });
-  console.log(process.env.clientid);
 });
 app.get("/logout", (req, res) => {
   res.clearCookie("varun-session-token");
@@ -116,7 +115,7 @@ app.get("/add", (req, res) => {
 app.get("/home", (req, res) => {
   Student.find({}, (err, result) => {
     Student.count({}, (errr, count) => {
-      res.render("home", { student: result, size: count, user: req.user });
+      res.render("home", { student: result, size: count });
     });
   });
 });
