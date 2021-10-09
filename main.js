@@ -26,7 +26,9 @@ app.get("/student/:student_id", (req, res) => {
     res.render("details", { student: result });
   });
 });
-
+app.get("/about", (req, res) => {
+  res.render("about");
+});
 app.get("/login", (req, res) => {
   res.render("login", { clientid: process.env.YOUR_CLIENT_ID });
   console.log(process.env.clientid);
