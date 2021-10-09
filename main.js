@@ -28,9 +28,20 @@ app.get("/profile", checkAuthenticated, (req, res) => {
     email: user.email,
     name: user.name,
   });
-  User.findOne({ email: user.email }, (err, result)=>{
+  User.findOne({ email: user.email }, (err, result) => {
     if (err) throw err;
-    if (result)
+    if (result) {
+      User.updateOne(
+        { email: user.email },
+        { visits: result.visits + 1 },
+        (err, doc) => {
+          if (err) throw err;
+          console.log("UPDATED = ", doc);
+        }
+      );
+    } else {
+      newUser.save();
+    }
   });
   res.render("profile", { user: user });
 });
