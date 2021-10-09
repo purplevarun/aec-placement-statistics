@@ -25,7 +25,28 @@
     border: none;
     margin-right: 20px;
   }
+  .dropdown {
+    display: flex;
+    background: rgb(36, 33, 33);
+    /* background: red; */
+    text-align: right;
+    flex-direction: column;
+    margin-top: 0px;
+    height: 100px;
+    display: none;
+  }
+  .dropdown-item {
+    /* border-bottom: 2px solid grey; */
+    color: white;
+  }
 </style>
+<script>
+  const toggleDropdown = () => {
+    var x = document.getElementById("dropdown").style;
+    if (x.display == "none") x.display = "flex";
+    else x.display = "none";
+  };
+</script>
 <div class="header">
   <button class="butt header-element" onclick="location.assign('/')">
     Home
@@ -39,5 +60,11 @@
     alt=""
     class="menu-icon butt header-element"
     width="40px"
+    onclick="toggleDropdown()"
   />
+</div>
+<div class="dropdown" id="dropdown" style="display: none">
+  <a href="#" class="dropdown-item">Login</a>
+  <a href="#" class="dropdown-item">Chat</a>
+  <a href="#" class="dropdown-item">About</a>
 </div>
