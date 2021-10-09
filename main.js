@@ -13,8 +13,8 @@ mongoose.connect(process.env.DB_URL, (err) => {
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.get("/student/:student_name", (req, res) => {
-  Student.findOne({ name: req.params.student_name }, (err, result) => {
+app.get("/student/:student_id", (req, res) => {
+  Student.findById(req.params.student_id, (err, result) => {
     res.render("details", { student: result });
   });
 });
