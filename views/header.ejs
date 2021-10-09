@@ -1,0 +1,43 @@
+<style>
+  .header {
+    width: 100%;
+    height: 60px;
+    background: rgb(36, 33, 33);
+    position: fixed;
+    top: 0;
+    display: flex;
+    /* flex-flow: column; */
+    justify-content: space-between;
+  }
+  .header-element {
+    float: left;
+  }
+  .butt {
+    max-width: 200px;
+    max-height: 40px;
+    margin: 10px;
+    background: inherit;
+    border: 2px solid grey;
+    border-radius: 8px;
+    color: white;
+  }
+  .menu-icon {
+    border: none;
+    margin-right: 20px;
+  }
+</style>
+<div class="header">
+  <button class="butt header-element" onclick="location.assign('/')">
+    Home
+  </button>
+  <button class="butt header-element" onclick="location.assign('/add')">
+    Add Student
+  </button>
+
+  <img
+    src="menu-icon.png"
+    alt=""
+    class="menu-icon butt header-element"
+    width="40px"
+  />
+</div>

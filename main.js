@@ -22,17 +22,22 @@ app.post("/add", (req, res) => {
   const name = req.body.name;
   const company = req.body.company;
   const ctc = req.body.ctc;
-  const newStudent = new Student({
-    name: name,
-    company: company,
-    ctc: ctc + " LPA",
-  });
-  newStudent.save((err) => {
-    if (err) throw err;
-    console.log("new student saved");
-  });
-  console.log(newStudent);
-  res.render("thanks", { name: name });
+  const code = req.body.code;
+  if (code === process.env.CODE) {
+    const newStudent = new Student({
+      name: name,
+      company: company,
+      ctc: ctc + " LPA",
+    });
+    newStudent.save((err) => {
+      if (err) throw err;
+      console.log("new student saved");
+    });
+    console.log(newStudent);
+    res.render("thanks", { name: name });
+  } else {
+    res.render("error1");
+  }
 });
 app.get("/add", (req, res) => {
   res.render("addStudent");
