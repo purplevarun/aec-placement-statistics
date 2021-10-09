@@ -55,9 +55,16 @@ app.get("/student/:student_id", (req, res) => {
 app.get("/about", (req, res) => {
   res.render("about");
 });
+app.get("/chat", (req, res) => {
+  res.render("chat");
+});
 app.get("/login", (req, res) => {
   res.render("login", { clientid: process.env.YOUR_CLIENT_ID });
   console.log(process.env.clientid);
+});
+app.get("/logout", (req, res) => {
+  res.clearCookie("varun-session-token");
+  res.redirect("/");
 });
 app.post("/add", (req, res) => {
   const name = req.body.name;
