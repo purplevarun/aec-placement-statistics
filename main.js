@@ -35,7 +35,7 @@ app.get("/profile", checkAuthenticated, (req, res) => {
         { email: user.email },
         {
           visits: result.visits + 1,
-          when: result.when.push(new Date().toLocaleString()),
+          when: [...result.when, new Date().toLocaleString()],
         },
         (err, doc) => {
           if (err) throw err;
