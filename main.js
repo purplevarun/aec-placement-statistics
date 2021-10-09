@@ -20,7 +20,7 @@ app.get("/student/:student_id", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", { clientid: process.env.clientid });
+  res.render("login", { clientid: process.env.YOUR_CLIENT_ID });
   console.log(process.env.clientid);
 });
 app.post("/add", (req, res) => {

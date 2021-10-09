@@ -15,16 +15,21 @@
 
     <title>Login</title>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="<%= clientid %> " />
+    <meta name="google-signin-client_id" content="<%= clientid %>" />
     <script>
-      console.log("hemlo");
-      console.log("<%=clientid%>");
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+      }
     </script>
     <style>
       body {
         color: white;
         background: black;
-        margin-top: 100px;
+        margin-top: 200px;
       }
       .g-signin2 {
         width: 100%;
@@ -38,7 +43,12 @@
   <body>
     <%- include ('./header.ejs') %>
     <div class="login">
-      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <div
+        class="g-signin2"
+        data-onsuccess="onSignIn"
+        data-theme="dark"
+        data-longtitle="true"
+      ></div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
