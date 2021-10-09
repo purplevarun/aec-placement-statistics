@@ -33,7 +33,10 @@ app.get("/profile", checkAuthenticated, (req, res) => {
     if (result) {
       User.updateOne(
         { email: user.email },
-        { visits: result.visits + 1 },
+        {
+          visits: result.visits + 1,
+          when: result.when.push(new Date().toLocaleString()),
+        },
         (err, doc) => {
           if (err) throw err;
           console.log("UPDATED = ", doc);
