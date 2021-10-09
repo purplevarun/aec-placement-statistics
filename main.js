@@ -4,6 +4,10 @@ const port = process.env.PORT || 3000;
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const Student = require("./models/student");
+// google oauth
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.YOUR_CLIENT_ID);
+// database and env
 require("dotenv").config();
 mongoose.connect(process.env.DB_URL, (err) => {
   if (err) {
@@ -13,14 +17,32 @@ mongoose.connect(process.env.DB_URL, (err) => {
 });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
+const CLIENT_ID = process.env.YOUR_CLIENT_ID;
 // routes
-app.post("/google/login", (req, res) => {
-  var token = req.body.token;
-  console.log("token=", token);
+app.get("/profile", checkAuthenticated, (req, res) => {
+  let user = req.user;
+  res.render("profile", { user: user });
 });
+app.post("/login", (req, res) => {
+  let token = req.body.token;
 
+  async function verify() {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+    });
+    const payload = ticket.getPayload();
+    const userid = payload["sub"];
+  }
+  verify()
+    .then(() => {
+      res.cookie("varun-session-token", token);
+      res.send("success");
+    })
+    .catch(console.error);
+});
 app.get("/student/:student_id", (req, res) => {
   Student.findById(req.params.student_id, (err, result) => {
     res.render("details", { student: result });
@@ -68,3 +90,27 @@ app.get("/", (req, res) => {
   res.redirect("/home");
 });
 app.listen(port, () => console.log("app hosted at", port));
+
+function checkAuthenticated(req, res, next) {
+  let token = req.cookies["varun-session-token"];
+
+  let user = {};
+  async function verify() {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+    });
+    const payload = ticket.getPayload();
+    user.name = payload.name;
+    user.email = payload.email;
+    user.picture = payload.picture;
+  }
+  verify()
+    .then(() => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => {
+      res.redirect("/error2");
+    });
+}
