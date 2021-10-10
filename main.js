@@ -84,6 +84,20 @@ app.get("/student/:student_id", (req, res) => {
 app.get("/about", (req, res) => {
   res.render("about");
 });
+app.post("/newChat", (req, res) => {
+  const sender = req.cookies["varun-username"];
+  const msg = req.body.message;
+  console.log("the msg was = ", msg);
+  const newChat = new Chat({
+    sender: sender,
+    msg: msg,
+  });
+  newChat.save((err) => {
+    if (err) throw err;
+    console.log("new chat added");
+  });
+  res.redirect("/chat");
+});
 app.get("/chat", checkAuthenticated, (req, res) => {
   Chat.find({}, (err, result) => {
     res.render("chat", { Chat: result });
@@ -94,6 +108,7 @@ app.get("/login", (req, res) => {
 });
 app.get("/logout", (req, res) => {
   res.clearCookie("varun-session-token");
+  res.clearCookie("varun-username");
   res.redirect("/");
 });
 app.post("/add", (req, res) => {
@@ -148,6 +163,7 @@ function checkAuthenticated(req, res, next) {
     user.name = payload.name;
     user.email = payload.email;
     user.picture = payload.picture;
+    res.cookie("varun-username", user.name);
   }
   verify()
     .then(() => {
