@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const Student = require("./models/student");
 const User = require("./models/users");
+const Chat = require("./models/chat");
 // google oauth
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.YOUR_CLIENT_ID);
@@ -83,8 +84,10 @@ app.get("/student/:student_id", (req, res) => {
 app.get("/about", (req, res) => {
   res.render("about");
 });
-app.get("/chat", (req, res) => {
-  res.render("chat");
+app.get("/chat", checkAuthenticated, (req, res) => {
+  Chat.find({}, (err, result) => {
+    res.render("chat", { Chat: result });
+  });
 });
 app.get("/login", (req, res) => {
   res.render("login", { clientid: process.env.YOUR_CLIENT_ID });
