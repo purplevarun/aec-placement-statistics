@@ -4,13 +4,24 @@
     font-family: "Noto Sans Mono", monospace;
   }
   .chat-box {
-    border: 5px solid white;
-    background: red;
-    padding: 10px 0px;
+    border: 2px solid white;
+    border-radius: 9px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 3px 0px;
+  }
+  small {
+    font-size: 10px;
+  }
+  p {
+    margin: 0px;
+  }
+  .info {
+    color: lightgreen;
   }
 </style>
 <div class="chat-box">
-  <p>msg - <%= msg %></p>
-  <p>sender - <%= sender %></p>
-  <p>time - <%- time %></p>
+  <p class="info"><small><%= sender %> (<%= time %> )</small></p>
+  <p class="actual-msg"><%= msg %></p>
 </div>

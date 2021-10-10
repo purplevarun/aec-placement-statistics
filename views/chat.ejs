@@ -21,7 +21,7 @@
         font-family: "Noto Sans Mono", monospace;
       }
       body {
-        margin-top: 60px;
+        margin-top: 185px;
         color: white;
         background: black;
       }
@@ -30,23 +30,33 @@
         flex-direction: column-reverse;
       }
       .new-chat {
-        background: grey;
+        background: rgb(36, 33, 33);
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 50px;
+      }
+      .new-chat > input {
+        outline: none;
+        border-radius: 10px;
+      }
+      .new-chat > * {
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
     <%- include ('./header.ejs') %>
-    <div class="new-chat">
-      <form action="/newChat" method="post">
-        <p>New Chat :</p>
-        <input type="text" name="message" />
 
-        <button class="btn btn-sm btn-primary">Send message</button>
-      </form>
-    </div>
     <div class="chat">
       <% Chat.forEach(chat=>{ %> <%- include('./chat-box', {sender:chat.sender,
       msg:chat.msg, time:chat.time}) %> <%}) %>
+    </div>
+    <div class="new-chat">
+      <form action="/newChat" method="post">
+        <input type="text" name="message" />
+        <button class="btn btn-sm btn-primary">Send message</button>
+      </form>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
