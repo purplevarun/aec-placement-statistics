@@ -92,6 +92,7 @@ app.post("/newChat", checkAuthenticated, (req, res) => {
   const newChat = new Chat({
     sender: sender,
     msg: msg,
+    time: new Date(new Date().getTime() + 330 * 60000).toLocaleString(),
   });
   newChat.save((err) => {
     if (err) throw err;
