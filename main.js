@@ -170,6 +170,12 @@ app.post("/findbycompany", (req, res) => {
 app.get("/findbyname", (req, res) => {
   res.render("findbyname");
 });
+app.post("/findbyname", (req, res) => {
+  const name = req.body.name;
+  Student.find({ name: name }, (err, result) => {
+    res.render("findbynameResults", { student: result });
+  });
+});
 app.get("/findbycompany", (req, res) => {
   Student.find({}, (err, result) => {
     res.render("findbycompany", {
