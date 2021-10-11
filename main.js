@@ -144,7 +144,7 @@ app.get("/home", (req, res) => {
   });
 });
 app.get("/find", (req, res) => {
-  res.json({ status: "not yet ready" });
+  res.render("findBy");
 });
 app.get("/", (req, res) => {
   res.redirect("/home");
