@@ -146,6 +146,12 @@ app.get("/home", (req, res) => {
 app.get("/find", (req, res) => {
   res.render("findBy");
 });
+app.get("/findbyname", (req, res) => {
+  res.render("findbyname");
+});
+app.get("/findbycompany", (req, res) => {
+  res.render("findbycompany");
+});
 app.get("/", (req, res) => {
   res.redirect("/home");
 });
