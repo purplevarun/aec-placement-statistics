@@ -146,11 +146,37 @@ app.get("/home", (req, res) => {
 app.get("/find", (req, res) => {
   res.render("findBy");
 });
+app.post("/findbycompany", (req, res) => {
+  const selected_company = req.body.company;
+  if (!selected_company) {
+    Student.find({}, (err, result) => {
+      res.render("findbycompany", {
+        student: result,
+        error: "Please select a company",
+      });
+    });
+  } else {
+    Student.find({ company: selected_company }, (err, result) => {
+      Student.count({ company: selected_company }, (errr, count) => {
+        res.render("findbycompanyResults", {
+          student: result,
+          count: count,
+          selected_company: selected_company,
+        });
+      });
+    });
+  }
+});
 app.get("/findbyname", (req, res) => {
   res.render("findbyname");
 });
 app.get("/findbycompany", (req, res) => {
-  res.render("findbycompany");
+  Student.find({}, (err, result) => {
+    res.render("findbycompany", {
+      student: result,
+      error: null,
+    });
+  });
 });
 app.get("/", (req, res) => {
   res.redirect("/home");

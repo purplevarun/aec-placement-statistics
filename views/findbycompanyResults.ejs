@@ -23,18 +23,23 @@
         background: black;
       }
       .topic {
-        display: flex;
         margin-top: 70px;
         align-items: center;
         width: 100%;
         justify-content: center;
+        text-align: center;
       }
       .container {
-        display: flex;
         margin-top: 60px;
         align-items: center;
         width: 100%;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      .counter {
+        text-align: center;
+        color: green;
       }
     </style>
   </head>
@@ -42,7 +47,13 @@
     <%- include('./header.ejs') %>
     <div class="topic"><h1>Find Student by Company</h1></div>
     <hr />
-    <div class="container">main stuff</div>
+    <div class="counter">
+      <small>Students Placed in <%= selected_company %> = <%= count %> </small>
+    </div>
+    <div class="container">
+      <% student.forEach(s=>{%> <%- include ('./student.ejs', {name:s.name,
+      company:s.company,id:s.id}) %> <%}) %>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

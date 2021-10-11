@@ -35,14 +35,50 @@
         align-items: center;
         width: 100%;
         justify-content: center;
+        flex-direction: column;
+      }
+      form {
+        text-align: center;
+      }
+      form > * {
+        margin: 20px;
+      }
+      select {
+        width: 300px;
+        outline: none;
+        border-radius: 9px;
+        padding: 5px 20px;
+        font-weight: 800;
+      }
+      select {
+        color: white;
+        background: black;
       }
     </style>
   </head>
   <body>
     <%- include('./header.ejs') %>
     <div class="topic"><h1>Find Student by Company</h1></div>
-    <hr />
-    <div class="container">main stuff</div>
+
+    <div class="container">
+      <form action="/findbycompany" method="post">
+        <h3>Select name of Company</h3>
+
+        <select name="company" required>
+          <option selected disabled hidden value="none">Choose Company</option>
+          <% var dp={};%> <% student.forEach(stu=>{%> <% if(stu.company in dp){}
+          else {%>
+          <option value="<%= stu.company %>"><%= stu.company %></option>
+          <% dp[stu.company]=true} %> <% })%>
+        </select>
+        <br />
+        <div style="text-align: center">
+          <% if (error) %>
+          <h2 style="color: red"><%= error %></h2>
+        </div>
+        <button class="btn btn-lg btn-danger">Find</button>
+      </form>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

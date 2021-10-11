@@ -35,14 +35,36 @@
         align-items: center;
         width: 100%;
         justify-content: center;
+        flex-direction: column;
+      }
+      form {
+        text-align: center;
+      }
+      form > * {
+        margin: 20px;
+      }
+      input {
+        width: 300px;
+        outline: none;
+        border-radius: 9px;
+        padding: 5px 20px;
+        font-weight: 800;
+      }
+      button {
+        margin-top: 40px;
       }
     </style>
   </head>
   <body>
     <%- include('./header.ejs') %>
     <div class="topic"><h1>Find Student by Name</h1></div>
-    <hr />
-    <div class="container">main stuff</div>
+    <div class="container">
+      <form action="/findbyname" method="post">
+        <h3>Enter Name of Student</h3>
+        <input type="text" name="name" required />
+        <button class="btn btn-lg btn-danger">Find</button>
+      </form>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
