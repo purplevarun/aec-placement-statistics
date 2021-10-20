@@ -24,6 +24,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const CLIENT_ID = process.env.YOUR_CLIENT_ID;
 // routes
+app.post("/delete/:ID", (req, res) => {
+  const code = req.body.code;
+  if (code == process.env.CODE) {
+    const ID = req.params.ID;
+    Student.deleteOne({ id: ID }, (err, result) => {
+      if (err) res.render("student_not_deleted");
+      else {
+        res.render("student_deleted");
+      }
+    });
+  } else {
+    res.render("student_not_deleted");
+  }
+});
 app.get("/profile", checkAuthenticated, (req, res) => {
   let user = req.user;
   const newUser = new User({

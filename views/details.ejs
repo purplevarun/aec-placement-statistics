@@ -70,6 +70,12 @@
       <button class="btn btn-lg btn-primary" onclick="location.assign('/')">
         Go Back
       </button>
+      <br />
+      <br />
+      <form action="/delete/<%= student.id %> " method="post">
+        <input type="text" placeholder="enter code" name="code" />
+        <button class="btn btn-sm btn-danger">Delete this student</button>
+      </form>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
