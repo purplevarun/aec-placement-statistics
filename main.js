@@ -28,13 +28,14 @@ app.post("/delete/:ID", (req, res) => {
   const code = req.body.code;
   if (code == process.env.CODE) {
     const ID = req.params.ID;
-    Student.deleteOne({ id: ID }, (err, result) => {
-      if (err) res.render("student_not_deleted");
-      else {
-        res.render("student_deleted");
-      }
+    Student.findByIdAndDelete(ID, (err, result) => {
+      if (err) {
+        console.log("err=", err);
+        res.render("student_not_deleted");
+      } else res.render("student_deleted");
     });
   } else {
+    console.log("wrong password while deletion");
     res.render("student_not_deleted");
   }
 });
