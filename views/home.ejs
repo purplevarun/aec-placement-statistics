@@ -42,6 +42,10 @@
       .upper-header {
         text-align: left;
       }
+      .student-box {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     </style>
     <title>AEC Statistics ❤</title>
     <script>
@@ -72,8 +76,10 @@
       </button> -->
       <hr />
       <!-- Students -->
-      <% student.forEach(stu=>{%> <%- include('student',
-      {name:stu.name,company:stu.company,id:stu.id}) %> <%}) %>
+      <div class="student-box">
+        <% student.forEach(stu=>{%> <%- include('student',
+        {name:stu.name,company:stu.company,id:stu.id}) %> <%}) %>
+      </div>
       <!--  -->
     </div>
     <small
