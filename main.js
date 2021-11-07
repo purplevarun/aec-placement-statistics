@@ -151,12 +151,16 @@ app.post("/add", (req, res) => {
 app.get("/add", (req, res) => {
   res.render("addStudent");
 });
-app.get("/home", (req, res) => {
-  Student.find({}, (err, result) => {
-    Student.count({}, (errr, count) => {
-      res.render("home", { student: result, size: count });
+app.get("/home/:sorter", (req, res) => {
+  const sorter = {};
+  sorter[req.params.sorter] = "asc";
+  Student.find({})
+    .sort(sorter)
+    .exec((err, result) => {
+      Student.count({}, (errr, count) => {
+        res.render("home", { student: result, size: count });
+      });
     });
-  });
 });
 app.get("/find", (req, res) => {
   res.render("findBy");
@@ -200,7 +204,7 @@ app.get("/findbycompany", (req, res) => {
   });
 });
 app.get("/", (req, res) => {
-  res.redirect("/home");
+  res.redirect("/home/ctc");
 });
 app.listen(port, () => console.log("app hosted at", port));
 

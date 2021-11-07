@@ -63,18 +63,70 @@
         (IT)
       </h5>
 
-      <p><label for="prog">Total Students placed = <%= size %>/105</label></p>
-      <p><progress id="prog" value="<%=size%>" max="105"></progress></p>
+      <p><label for="prog">Total Students placed = <%= size %></label></p>
 
       <small>Click on a student to view details 😉</small>
       <br />
       <br />
-
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      />
       <!-- this button is now inside header -->
       <!-- <button class="btn btn-success btn-sm" onclick="location.assign('/add');">
         Add Student
       </button> -->
       <hr />
+      <!-- sorter -->
+      <style>
+        .sorter {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .sorter-menu {
+          /* background: grey; */
+          width: 200px;
+          border-radius: 20px;
+          margin-top: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          display: none;
+        }
+        .sorter-menu button {
+          margin-top: 5px;
+        }
+      </style>
+
+      <div class="sorter">
+        <button class="btn btn-sm btn-secondary" id="sorterbtn">
+          Sort by <i class="fas fa-long-arrow-alt-down"></i>
+        </button>
+        <div class="sorter-menu" id="sortermenu" style="display: none">
+          <button
+            class="btn btn-sm btn-secondary"
+            onclick="location.assign('/home/ctc')"
+          >
+            CTC
+          </button>
+          <button
+            class="btn btn-sm btn-secondary"
+            onclick="location.assign('/home/name')"
+          >
+            Student Name
+          </button>
+          <button
+            class="btn btn-sm btn-secondary"
+            onclick="location.assign('/home/company')"
+          >
+            Company Name
+          </button>
+        </div>
+      </div>
+      <!-- end of sorter -->
       <!-- Students -->
       <div class="student-box">
         <% student.forEach(stu=>{%> <%- include('student',
@@ -113,4 +165,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
     -->
   </body>
+  <script>
+    const btn = document.getElementById("sorterbtn");
+    const menu = document.getElementById("sortermenu");
+    btn.onclick = () => {
+      if (menu.style.display == "none") menu.style.display = "flex";
+      else menu.style.display = "none";
+    };
+  </script>
 </html>
