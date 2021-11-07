@@ -203,6 +203,50 @@ app.get("/findbycompany", (req, res) => {
     });
   });
 });
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}
+app.get("/kedia", (req, res) => {
+  Student.find({}, (err, docs) => {
+    docs.forEach((doc) => {
+      var newctc = parseFloat(doc.ctcInt);
+      console.log(newctc);
+      Student.updateOne(
+        { _id: doc._id },
+        {
+          ctc: newctc,
+        },
+        (error, result) => {
+          console.log(result);
+        }
+      );
+    });
+  });
+  res.send("bye");
+});
+app.get("/varun", (req, res) => {
+  Student.find({}, (err, docs) => {
+    docs.forEach((doc) => {
+      var ctc = doc.ctc;
+      console.log("old= ", ctc);
+      ctc = reverseString(ctc);
+      ctc = ctc.substring(4);
+      ctc = reverseString(ctc);
+      ctc = parseFloat(ctc);
+      console.log("new= ", ctc);
+      Student.updateOne(
+        { _id: doc._id },
+        {
+          ctcInt: ctc,
+        },
+        (error, result) => {
+          console.log(result);
+        }
+      );
+    });
+  });
+  res.send("hi");
+});
 app.get("/", (req, res) => {
   res.redirect("/home/ctc");
 });
