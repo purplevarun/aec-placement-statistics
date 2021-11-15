@@ -136,7 +136,7 @@ app.post("/add", (req, res) => {
     const newStudent = new Student({
       name: name,
       company: company,
-      ctc: ctc + " LPA",
+      ctc: ctc,
     });
     newStudent.save((err) => {
       if (err) throw err;
